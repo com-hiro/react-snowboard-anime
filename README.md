@@ -31,8 +31,9 @@ src/
 ├── components/ # React components
 ├── App.tsx # Main logic and animation handling
 └── App.css # Animation styles and layout
+```
 
-🛠 How to Run Locally
+## 🛠 How to Run Locally
 
 1. Clone the repository:
    `git clone [https://github.com/あなたのユーザー名/react-snowboard-anime.git](https://github.com/あなたのユーザー名/react-snowboard-anime.git)`
@@ -52,4 +53,3 @@ Akira Hirohashi
 ## 📄 License
 
 This project is open-sourced under the MIT License.
-```
