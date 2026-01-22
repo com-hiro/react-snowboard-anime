@@ -1,0 +1,225 @@
+.snow-world {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #74b9ff 0%, #cae9ff 100%);
+}
+.the-sun {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, #fffa65, #ffaf40);
+  border-radius: 50%;
+  box-shadow: 0 0 50px #ffaf40;
+  z-index: 1;
+}
+.mt-range {
+  position: absolute;
+  bottom: 25%;
+  width: 100%;
+  height: 60vh;
+  z-index: 2;
+}
+
+.mountain {
+  position: absolute;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 50% 10%, #ffffff 10%, transparent 30%),
+    linear-gradient(
+      125deg,
+      transparent 40%,
+      #9ca3af 45%,
+      #9ca3af 55%,
+      transparent 60%
+    ),
+    linear-gradient(
+      to bottom,
+      #ffffff 0%,
+      #ffffff 20%,
+      #9ca3af 20%,
+      #9ca3af 70%,
+      #5a6772 70%,
+      #5a6772 100%
+    );
+  filter: contrast(1.1);
+}
+.m1 {
+  width: 550px;
+  height: 50%;
+  left: -100px;
+  clip-path: polygon(
+    0% 100%,
+    15% 55%,
+    30% 20%,
+    50% 35%,
+    70% 15%,
+    85% 45%,
+    100% 100%
+  );
+  z-index: 3;
+}
+.m2 {
+  width: 700px;
+  height: 70%;
+  left: 5%;
+  opacity: 0.8;
+  clip-path: polygon(
+    0% 100%,
+    20% 60%,
+    40% 15%,
+    55% 35%,
+    75% 10%,
+    90% 50%,
+    100% 100%
+  );
+  z-index: 1;
+}
+.m3 {
+  width: 950px;
+  height: 95%;
+  left: 15%;
+  clip-path: polygon(
+    0% 100%,
+    20% 65%,
+    35% 25%,
+    50% 5%,
+    65% 20%,
+    80% 15%,
+    90% 60%,
+    100% 100%
+  );
+  z-index: 2;
+}
+.m4 {
+  width: 650px;
+  height: 65%;
+  left: 60%;
+  opacity: 0.8;
+  clip-path: polygon(0% 100%, 25% 45%, 45% 15%, 65% 35%, 85% 20%, 100% 100%);
+  z-index: 1;
+}
+.m5 {
+  width: 750px;
+  height: 55%;
+  right: -150px;
+  clip-path: polygon(0% 100%, 20% 50%, 45% 20%, 65% 40%, 85% 15%, 100% 100%);
+  z-index: 3;
+}
+
+.ground-slope {
+  position: absolute;
+  top: 52%;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: #ffffff;
+  /* 修正：7deg から -7deg にして、右上がりの斜面（左下への下り坂）にします */
+  transform: rotate(-7deg);
+  z-index: 5;
+}
+
+.rider-container {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+}
+.rider-shake {
+  animation: shake 0.5s ease-in-out infinite alternate;
+}
+@keyframes shake {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+.rider-img {
+  width: 60px;
+  /* mix-blend-mode: multiply; */
+  filter: contrast(1.1);
+}
+.main-title {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: sans-serif;
+  font-size: 3rem;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 30;
+}
+
+.cloud-group {
+  position: absolute;
+  top: 10%; /* 雲の高さ */
+  z-index: 20;
+  pointer-events: none; /* マウスイベントを透過させる */
+  transition: left 0.1s ease-out; /* 動きを少し滑らかにするオプション */
+}
+
+.cloud-puffs {
+  position: relative;
+  width: 120px;
+  height: 50px;
+}
+.puff {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+.puff-main {
+  width: 100px;
+  height: 50px;
+  top: 0;
+  left: 10px;
+}
+.puff-left {
+  width: 60px;
+  height: 40px;
+  top: 10px;
+  left: -15px;
+}
+.puff-right {
+  width: 55px;
+  height: 35px;
+  top: 15px;
+  left: 80px;
+}
+.puff-top {
+  width: 65px;
+  height: 45px;
+  top: -15px;
+  left: 30px;
+}
+.snow-layer {
+  position: absolute;
+  top: 50px;
+  width: 120px;
+  height: 600px;
+}
+.snow-layer span {
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  animation: snowfall linear infinite;
+  opacity: 0;
+}
+@keyframes snowfall {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px);
+    opacity: 0;
+  }
+}

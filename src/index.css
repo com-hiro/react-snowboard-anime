@@ -1,0 +1,141 @@
+.resort-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #74b9ff 0%, #cae9ff 100%);
+}
+
+.sun-new-style {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #fffa65, #ffaf40);
+  border-radius: 50%;
+  box-shadow: 0 0 40px #ffaf40;
+  z-index: 1;
+}
+
+/* 山脈レイヤー：スロープの後ろ(z-index: 2) */
+.mountain-view {
+  position: absolute;
+  bottom: 35%;
+  width: 100%;
+  height: 500px;
+  z-index: 2;
+}
+
+.mt-box {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rock-bottom {
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 350px solid #7f8c8d;
+}
+
+.snow-top {
+  position: absolute;
+  bottom: 150px;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 200px solid #ffffff;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+.pos-1 {
+  left: 10%;
+  transform: scale(1.1);
+  z-index: 3;
+}
+.pos-2 {
+  left: 40%;
+  transform: scale(0.9);
+  z-index: 2;
+}
+.pos-3 {
+  left: -50px;
+  transform: scale(0.7);
+  z-index: 1;
+}
+
+/* スロープ：山より前、ライダーより後ろ(z-index: 4) */
+.slope-new-style {
+  position: absolute;
+  top: 48%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: white;
+  transform: rotate(11deg);
+  z-index: 4;
+}
+
+/* 雲と雪：最前面(z-index: 20) */
+.cloud-new-style {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.cloud-body {
+  width: 110px;
+  height: 45px;
+  background: white;
+  border-radius: 50px;
+  box-shadow:
+    15px 10px 0 5px white,
+    -15px 5px 0 2px white;
+}
+
+.snow-container {
+  position: absolute;
+  top: 40px;
+  width: 110px;
+  height: 600px;
+  overflow: visible;
+}
+
+.snow-flake {
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  opacity: 0;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px);
+    opacity: 0;
+  }
+}
+
+/* ライダー：スロープの上(z-index: 10) */
+.rider-fixed {
+  position: absolute;
+  width: 55px;
+  z-index: 10;
+  background-color: transparent !important;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1) brightness(1.1);
+  pointer-events: none;
+}
