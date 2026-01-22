@@ -59,11 +59,16 @@ const App: React.FC = () => {
     <div className="snow-world">
       {/* プロフィールカード（ここにお名前とSNSリンクを！） */}
       <div className="profile-card">
-        <h2>廣橋 昭(Akira HIrohashi)</h2>
-        <p className="comment-text">
-          Reactで作ったスノーボードの世界へようこそ！🏂
-          マウス(スマホの場合は指で触れた場所)に雲がついてきます。
+        <h2>Akira Hirohashi (廣橋 昭)</h2>
+        <p className="title">Software Engineer (AI & Cloud)</p>
+        <p className="description">
+          Welcome to the world of snowboarding, built with React! 🏂
+          <br />
+          Streamed with Cloudflare.
+          <br />
+          Clouds follow your mouse (or your finger on a smartphone).
         </p>
+
         <div className="sns-links">
           <a
             href="https://x.com/ak_hirohashi"
