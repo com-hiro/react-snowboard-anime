@@ -62,7 +62,7 @@ const App: React.FC = () => {
         <h2>廣橋 昭(Akira HIrohashi)</h2>
         <p className="comment-text">
           Reactで作ったスノーボードの世界へようこそ！🏂
-          指で触れると雲がついてきます。
+          マウス(スマホの場合は指で触れた場所)に雲がついてきます。
         </p>
         <div className="sns-links">
           <a
