@@ -10,24 +10,28 @@ const App: React.FC = () => {
     [],
   );
 
-  // 1. ridersのデータは、ここ（外側）に置いておけば、エラーは消えます。
   const riders = [
     { id: "red", lane: -10, speed: 0.1, amp: 70, freq: 0.0015, delay: 0 },
     { id: "blue", lane: 0, speed: 0.07, amp: 100, freq: 0.0012, delay: 4000 },
     { id: "green", lane: 10, speed: 0.14, amp: 60, freq: 0.002, delay: 8000 },
   ];
 
-  // 1. useEffectの中に以下のマウスイベント処理を追加します
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // マウスのX座標を state に保存します
-      setMousePos({ x: e.clientX, y: e.clientY });
+    // マウスとタッチの両方の座標を取得する関数
+    const handleMove = (e: MouseEvent | TouchEvent) => {
+      let x = 0;
+      if ("clientX" in e) {
+        x = e.clientX;
+      } else if (e.touches && e.touches.length > 0) {
+        x = e.touches[0].clientX;
+      }
+      setMousePos({ x, y: 0 });
     };
 
-    // 画面全体でマウスの動きを監視します
-    window.addEventListener("mousemove", handleMouseMove);
+    // 両方のイベントを登録
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("touchmove", handleMove, { passive: false });
 
-    // アニメーションの処理（既存のコード）
     const update = (time: number) => {
       riders.forEach((r) => {
         const el = document.getElementById(r.id);
@@ -43,9 +47,9 @@ const App: React.FC = () => {
     };
     requestRef.current = requestAnimationFrame(update);
 
-    // クリーンアップ処理：監視を解除します
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("touchmove", handleMove);
       cancelAnimationFrame(requestRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,6 +57,33 @@ const App: React.FC = () => {
 
   return (
     <div className="snow-world">
+      {/* プロフィールカード（ここにお名前とSNSリンクを！） */}
+      <div className="profile-card">
+        <h2>廣橋 昭(Akira HIrohashi)</h2>
+        <p className="comment-text">
+          Reactで作ったスノーボードの世界へようこそ！🏂
+          指で触れると雲がついてきます。
+        </p>
+        <div className="sns-links">
+          <a
+            href="https://x.com/ak_hirohashi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sns-button x-link"
+          >
+            X
+          </a>
+          <a
+            href="https://www.linkedin.com/in/akira-hirohashi/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sns-button li-link"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
       <h1 className="main-title">SNOWBOARD RESORT</h1>
       <div className="the-sun" />
       <div className="mt-range">
@@ -63,7 +94,7 @@ const App: React.FC = () => {
         <div className="mountain m5" />
       </div>
       <div className="ground-slope" />
-      {/* 3. これで 'riders' が見つからないエラーは解消されます */}
+
       {riders.map((r) => (
         <div key={r.id} id={r.id} className="rider-container">
           <div className="rider-shake">
@@ -71,6 +102,7 @@ const App: React.FC = () => {
           </div>
         </div>
       ))}
+
       <div
         className="cloud-group"
         style={{ left: `${mousePos.x}px`, transform: "translateX(-50%)" }}
