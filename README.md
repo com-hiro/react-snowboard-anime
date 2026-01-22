@@ -36,7 +36,7 @@ src/
 ## 🛠 How to Run Locally
 
 1. Clone the repository:
-   `git clone [https://github.com/あなたのユーザー名/react-snowboard-anime.git](https://github.com/あなたのユーザー名/react-snowboard-anime.git)`
+   `git clone [https://github.com/com-hiro/react-snowboard-anime.git]`
 2. Install dependencies:
    `npm install`
 3. Start the development server:
