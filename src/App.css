@@ -1,3 +1,73 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background-color: #74b9ff; /* ローディング時のチラつき防止 */
+}
+
+/* index.html の header (SEOタイトルとリンク) のスタイル */
+header {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 100; /* 全ての手前に配置 */
+  width: 90%;
+  pointer-events: none; /* 下の要素（雲など）の操作を邪魔しない */
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  color: white;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  letter-spacing: 2px;
+}
+
+header p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+header nav {
+  margin-top: 15px;
+  pointer-events: auto; /* リンクだけはクリック可能にする */
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px 12px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+header nav a:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* index.html の footer */
+footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
 .snow-world {
   position: relative;
   width: 100vw;
@@ -5,6 +75,7 @@
   overflow: hidden;
   background: linear-gradient(to bottom, #74b9ff 0%, #cae9ff 100%);
 }
+
 .the-sun {
   position: absolute;
   top: 40px;
@@ -14,8 +85,9 @@
   background: radial-gradient(circle, #fffa65, #ffaf40);
   border-radius: 50%;
   box-shadow: 0 0 50px #ffaf40;
-  z-index: 1;
+  z-index: 1; /* 山より後ろ */
 }
+
 .mt-range {
   position: absolute;
   bottom: 25%;
@@ -45,8 +117,8 @@
       #5a6772 70%,
       #5a6772 100%
     );
-  filter: contrast(1.1);
 }
+
 .m1 {
   width: 550px;
   height: 50%;
@@ -117,7 +189,6 @@
   width: 120%;
   height: 100%;
   background: #ffffff;
-  /* 修正：7deg から -7deg にして、右上がりの斜面（左下への下り坂）にします */
   transform: rotate(-7deg);
   z-index: 5;
 }
@@ -127,9 +198,11 @@
   z-index: 10;
   pointer-events: none;
 }
+
 .rider-shake {
   animation: shake 0.5s ease-in-out infinite alternate;
 }
+
 @keyframes shake {
   from {
     transform: rotate(-3deg);
@@ -138,29 +211,18 @@
     transform: rotate(3deg);
   }
 }
+
 .rider-img {
   width: 60px;
-  /* mix-blend-mode: multiply; */
   filter: contrast(1.1);
-}
-.main-title {
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: sans-serif;
-  font-size: 3rem;
-  color: white;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  z-index: 30;
 }
 
 .cloud-group {
   position: absolute;
-  top: 10%; /* 雲の高さ */
+  top: 15%;
   z-index: 20;
-  pointer-events: none; /* マウスイベントを透過させる */
-  transition: left 0.1s ease-out; /* 動きを少し滑らかにするオプション */
+  pointer-events: none;
+  transition: left 0.1s ease-out;
 }
 
 .cloud-puffs {
@@ -168,11 +230,13 @@
   width: 120px;
   height: 50px;
 }
+
 .puff {
   position: absolute;
   background: white;
   border-radius: 50%;
 }
+
 .puff-main {
   width: 100px;
   height: 50px;
@@ -197,12 +261,14 @@
   top: -15px;
   left: 30px;
 }
+
 .snow-layer {
   position: absolute;
   top: 50px;
   width: 120px;
   height: 600px;
 }
+
 .snow-layer span {
   position: absolute;
   color: white;
@@ -210,6 +276,7 @@
   animation: snowfall linear infinite;
   opacity: 0;
 }
+
 @keyframes snowfall {
   0% {
     transform: translateY(0);
@@ -221,78 +288,5 @@
   100% {
     transform: translateY(600px);
     opacity: 0;
-  }
-}
-.profile-card {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 2000;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 300px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #2c3e50;
-  font-family: sans-serif;
-}
-
-.profile-card h2 {
-  margin: 0 0 10px 0;
-  font-size: 18px;
-  border-bottom: 2px solid #3498db;
-  display: inline-block;
-}
-
-.comment-text {
-  font-size: 13px;
-  line-height: 1.5;
-  margin-bottom: 15px;
-}
-
-.sns-links {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.sns-button {
-  text-decoration: none;
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  transition: transform 0.2s;
-}
-
-.sns-button:hover {
-  transform: scale(1.05);
-}
-
-.x-link {
-  background-color: #000;
-}
-.li-link {
-  background-color: #0077b5;
-}
-
-.update-note {
-  font-size: 11px;
-  color: #e67e22;
-  font-style: italic;
-  margin: 0;
-}
-
-/* スマホ対応：画面が小さい時は下側に配置 */
-@media (max-width: 600px) {
-  .profile-card {
-    top: auto;
-    bottom: 20px;
-    left: 10px;
-    right: 10px;
-    max-width: none;
   }
 }

@@ -5,11 +5,13 @@ const App: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 400, y: 0 });
   const requestRef = useRef<number>(0);
 
+  // 雪の結晶の生成
   const snowflakes = useMemo(
     () => [...Array(40)].map((_, i) => ({ id: i, left: i * 2.5 })),
     [],
   );
 
+  // ライダーの設定
   const riders = [
     { id: "red", lane: -10, speed: 0.1, amp: 70, freq: 0.0015, delay: 0 },
     { id: "blue", lane: 0, speed: 0.07, amp: 100, freq: 0.0012, delay: 4000 },
@@ -17,7 +19,6 @@ const App: React.FC = () => {
   ];
 
   useEffect(() => {
-    // マウスとタッチの両方の座標を取得する関数
     const handleMove = (e: MouseEvent | TouchEvent) => {
       let x = 0;
       if ("clientX" in e) {
@@ -28,7 +29,6 @@ const App: React.FC = () => {
       setMousePos({ x, y: 0 });
     };
 
-    // 両方のイベントを登録
     window.addEventListener("mousemove", handleMove);
     window.addEventListener("touchmove", handleMove, { passive: false });
 
@@ -41,7 +41,7 @@ const App: React.FC = () => {
         const sCurve = Math.sin((time + r.delay) * r.freq) * r.amp;
         el.style.left = `${currentLeft}%`;
         const descent = move * 0.12;
-        el.style.top = `calc(52% + ${r.lane}% + ${descent}vw + ${sCurve}px)`;
+        el.style.top = `calc(50% + ${r.lane}% + ${descent}vw + ${sCurve}px)`;
       });
       requestRef.current = requestAnimationFrame(update);
     };
@@ -52,45 +52,14 @@ const App: React.FC = () => {
       window.removeEventListener("touchmove", handleMove);
       cancelAnimationFrame(requestRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="snow-world">
-      {/* プロフィールカード（ここにお名前とSNSリンクを！） */}
-      <div className="profile-card">
-        <h2>Akira Hirohashi (廣橋 昭)</h2>
-        <p className="title">Software Engineer (AI & Cloud)</p>
-        <p className="description">
-          Welcome to the world of snowboarding, built with React! 🏂
-          <br />
-          Streamed with Cloudflare.
-          <br />
-          Clouds follow your mouse (or your finger on a smartphone).
-        </p>
-
-        <div className="sns-links">
-          <a
-            href="https://x.com/ak_hirohashi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sns-button x-link"
-          >
-            X
-          </a>
-          <a
-            href="https://www.linkedin.com/in/akira-hirohashi/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sns-button li-link"
-          >
-            LinkedIn
-          </a>
-        </div>
-      </div>
-
-      <h1 className="main-title">SNOWBOARD RESORT</h1>
+      {/* 太陽（z-indexの競合を防ぐためこの位置に配置） */}
       <div className="the-sun" />
+
+      {/* 山脈 */}
       <div className="mt-range">
         <div className="mountain m1" />
         <div className="mountain m2" />
@@ -98,8 +67,11 @@ const App: React.FC = () => {
         <div className="mountain m4" />
         <div className="mountain m5" />
       </div>
+
+      {/* 斜面 */}
       <div className="ground-slope" />
 
+      {/* ライダーたち */}
       {riders.map((r) => (
         <div key={r.id} id={r.id} className="rider-container">
           <div className="rider-shake">
@@ -108,6 +80,7 @@ const App: React.FC = () => {
         </div>
       ))}
 
+      {/* マウス追従する雲と雪 */}
       <div
         className="cloud-group"
         style={{ left: `${mousePos.x}px`, transform: "translateX(-50%)" }}
@@ -118,6 +91,7 @@ const App: React.FC = () => {
           <div className="puff puff-right" />
           <div className="puff puff-top" />
         </div>
+
         <div className="snow-layer">
           {snowflakes.map((s) => (
             <span

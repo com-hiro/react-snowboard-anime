@@ -1,36 +1,68 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Snowboard Resort - React Animation</title>
+    <meta charset="UTF-8" />
+
+    <title>Snowboard Resort – React Animation</title>
+
+    <!-- Standard SEO -->
+    <meta
+      name="description"
+      content="A personal portfolio project by Akira Hirohashi. An interactive snowboarding animation built with React and deployed on Cloudflare Pages."
+    />
+    <meta name="author" content="Akira Hirohashi" />
+
+    <!-- Open Graph (LinkedIn / Facebook / Slack) -->
+    <meta property="og:title" content="Snowboard Resort – React Animation" />
     <meta
       property="og:description"
-      content="Welcome to the world of snowboarding, built with React! This is a single-page application (SPA) featuring interactive animations that follow mouse and touch movements, hosted on Cloudflare Pages."
+      content="A React-based interactive snowboarding animation portfolio, deployed on Cloudflare Pages."
     />
     <meta
-      property="og:description"
-      content="A snowboarding animation world built with React and Cloudflare."
+      property="og:image"
+      content="https://react-snowboard-anime.pages.dev/rider-red.png"
     />
-    <meta property="og:type" content="website" />
     <meta
       property="og:url"
       content="https://react-snowboard-anime.pages.dev/"
     />
-    <meta name="author" content="Akira Hirohashi" />
-    <meta
-      name="publish_date"
-      property="og:publish_date"
-      content="2026-01-22T12:00:00Z"
-    />
-    <meta
-      name="image"
-      property="og:image"
-      content="https://react-snowboard-anime.pages.dev/rider-red.png"
-    />
+    <meta property="og:type" content="website" />
 
-    <meta property="article:published_time" content="2026-01-22" />
-  </head>
-  <body>
-    <div id="root"></div>
+    <!-- Optional but safe -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- React bundle -->
     <script type="module" src="/src/main.tsx"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BwbjIBHe.css" />
+  </head>
+
+  <body>
+    <!-- Static content for crawlers (can be visually hidden) -->
+    <header>
+      <h1>Snowboard Resort – React Animation</h1>
+      <p>
+        This is a personal portfolio project by Akira Hirohashi. Built with
+        React and Vite, featuring interactive animation and deployed on
+        Cloudflare Pages.
+        <br />
+        Clouds follow your mouse (or your finger on a smartphone).
+      </p>
+      <nav>
+        <a href="https://github.com/com-hiro/react-snowboard-anime">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/akira-hirohashi/">LinkedIn</a>
+      </nav>
+    </header>
+
+    <noscript>
+      This site requires JavaScript to display interactive animations.
+    </noscript>
+
+    <!-- React root -->
+    <div id="root"></div>
+
+    <!-- Optional footer -->
+    <footer>
+      <p>© 2026 Akira Hirohashi</p>
+    </footer>
   </body>
 </html>
